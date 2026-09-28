@@ -12,11 +12,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
 
-<!-- Styles -->
-<link rel="stylesheet" href="styles.css">
-
 <!-- PapaParse for CSV parsing -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.2/papaparse.min.js"></script>
+<!-- Chart.js for visual analytics -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
@@ -58,7 +59,6 @@
         <div class="section-sub">Required columns: <code>CONS_NO</code>, <code>risk_score</code>, <code>FLAG</code>, <code>theft_start_date</code></div>
 
         <div class="upload-card">
-          <!-- Styled Input 1 -->
           <div class="file-group">
             <label class="file-label" for="fileRisk">1. Risk Scores (CSV)</label>
             <div class="file-drop-area" data-input="fileRisk">
@@ -68,7 +68,6 @@
             <input type="file" id="fileRisk" class="file-input-hidden" accept=".csv, text/csv, text/plain, application/vnd.ms-excel, */*">
           </div>
 
-          <!-- Styled Input 2 -->
           <div class="file-group">
             <label class="file-label" for="fileDates">2. Theft Dates (CSV)</label>
             <div class="file-drop-area" data-input="fileDates">
@@ -78,7 +77,6 @@
             <input type="file" id="fileDates" class="file-input-hidden" accept=".csv, text/csv, text/plain, application/vnd.ms-excel, */*">
           </div>
 
-          <!-- Styled Input 3 -->
           <div class="file-group">
             <label class="file-label" for="fileExtra">3. Extra Grid Data (Optional)</label>
             <div class="file-drop-area" data-input="fileExtra">
@@ -141,6 +139,41 @@
       </div>
     </div>
   </div>
+
+  <!-- CHARTS SECTION (full width) -->
+  <div class="charts-wrap">
+    <section class="section" id="chartsSection" style="display:none;">
+      <div class="section-title">3. Visual Analytics</div>
+      <div class="section-sub">Distribution, top threats, and timeline insights from the merged dataset.</div>
+
+      <div class="chart-grid">
+        <div class="chart-card">
+          <div class="chart-title">Grid Composition</div>
+          <div class="chart-canvas-wrap">
+            <canvas id="chartDonut"></canvas>
+          </div>
+        </div>
+        <div class="chart-card">
+          <div class="chart-title">Risk Score Distribution</div>
+          <div class="chart-canvas-wrap">
+            <canvas id="chartHist"></canvas>
+          </div>
+        </div>
+        <div class="chart-card full">
+          <div class="chart-title">Top 10 Highest-Risk Meters</div>
+          <div class="chart-canvas-wrap tall">
+            <canvas id="chartTop10"></canvas>
+          </div>
+        </div>
+        <div class="chart-card full">
+          <div class="chart-title">Theft Start Dates Timeline</div>
+          <div class="chart-canvas-wrap tall">
+            <canvas id="chartTimeline"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
 </main>
 
 <footer class="footer">
@@ -153,7 +186,6 @@
 
 <div class="toast-stack" id="toastStack" aria-live="polite"></div>
 
-<!-- App logic -->
 <script src="script.js"></script>
 </body>
 </html>
