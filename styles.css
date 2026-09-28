@@ -253,3 +253,21 @@ input{font-family:inherit;font-size:inherit;color:inherit}
   height: 220px;
 }
 .chart-canvas-wrap.tall { height: 300px; }
+/* ═══════════════════════════════════════════════════════════════
+   PERFORMANCE — VIRTUALIZED PAINT FOR 30,000+ ROWS
+   ═══════════════════════════════════════════════════════════════ */
+
+.list-container {
+  max-height: 480px;
+  overflow-y: auto;
+  padding-right: 4px;
+  contain: strict;
+  content-visibility: auto;
+  will-change: scroll-position;
+}
+
+.radio-row {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 68px;
+  contain: layout paint style;
+}
